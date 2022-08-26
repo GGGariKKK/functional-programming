@@ -1,6 +1,7 @@
 package functional.programming;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,6 +11,8 @@ public class FunctionalTest {
         var names = new ArrayList<>(List.of("John", "Illia", "Roe", "Joe", "Chandler", "Ross", "Monica", "Rachel", "Phoebe"));
 
         System.out.println(getOddNames(names));
+
+        System.out.println(getUpperSortedDescending(names));
     }
 
     public static String getOddNames(List<String> names) {
@@ -19,4 +22,10 @@ public class FunctionalTest {
                 .collect(Collectors.joining(", "));
     }
 
+    public static List<String> getUpperSortedDescending(List<String> lines) {
+        return lines.stream()
+                .map(String::toUpperCase)
+                .sorted(Comparator.reverseOrder())
+                .toList();
+    }
 }
