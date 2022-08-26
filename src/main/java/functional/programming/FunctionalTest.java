@@ -1,6 +1,7 @@
 package functional.programming;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,8 @@ public class FunctionalTest {
         System.out.println(getOddNames(names));
 
         System.out.println(getUpperSortedDescending(names));
+
+        System.out.println(concatArray(new String[]{"1, 2, 0", "4, 5"}));
     }
 
     public static String getOddNames(List<String> names) {
@@ -27,5 +30,13 @@ public class FunctionalTest {
                 .map(String::toUpperCase)
                 .sorted(Comparator.reverseOrder())
                 .toList();
+    }
+
+    public static String concatArray(String[] arr){
+        return Arrays.stream(arr)
+                .map(element -> element.split(", "))
+                .flatMap(Arrays::stream)
+                .sorted()
+                .collect(Collectors.joining(", "));
     }
 }
